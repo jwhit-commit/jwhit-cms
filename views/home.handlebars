@@ -5,7 +5,7 @@
         <div class="card-body">
             <div class="card-title row flex">
                 <h3 class=>{{post.title}}</h3>
-                <p class="">{{format_date post.date_created}}</p>
+                <p class="">{{format_date post.date_created}} by {{post.user.username}} </p>
             </div>
             <p class="card-text ">{{post.body}}</p>
         </div>
