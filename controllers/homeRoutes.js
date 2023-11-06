@@ -4,7 +4,14 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
-        const dbPostData = await Post.findAll();
+        const dbPostData = await Post.findAll({
+            include: [
+              {
+                model: User,
+                attributes: ['username'],
+              },
+            ],
+          });
 
         const posts = dbPostData.map((post) =>
         post.get({ plain: true })
@@ -23,7 +30,15 @@ router.get('/', async (req, res) => {
 
 router.get('/dash', withAuth, async (req, res) => {
     try {
-        const dbPostData = await Post.findAll({ where: { user: req.session.user_id } });
+        const dbPostData = await Post.findAll({ 
+            where: { user_id: req.session.user_id },
+            include: [
+                {
+                  model: User,
+                  attributes: ['username'],
+                },
+              ],
+        });
 
         const posts = dbPostData.map((post) =>
         post.get({ plain: true })

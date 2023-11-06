@@ -1,0 +1,15 @@
+<body>
+    <br>
+    {{#each posts as |post|}}
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title row flex">
+                <h3 class=>{{post.title}}</h3>
+                <p class="">{{format_date post.date_created}} by {{post.user.username}} </p>
+            </div>
+            <p class="card-text ">{{post.body}}</p>
+        </div>
+    </div>
+    <br>
+    {{/each}}
+</body>
