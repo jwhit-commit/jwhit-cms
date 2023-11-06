@@ -1,4 +1,15 @@
 <body>
-    <h1>Recent posts</h1>
-
+    <br>
+    {{#each posts as |post|}}
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title row flex">
+                <h3 class=>{{post.title}}</h3>
+                <p class="">{{format_date post.date_created}}</p>
+            </div>
+            <p class="card-text ">{{post.body}}</p>
+        </div>
+    </div>
+    <br>
+    {{/each}}
 </body>
