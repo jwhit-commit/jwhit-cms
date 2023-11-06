@@ -10,22 +10,33 @@
 </head>
 
 <body class="bg-secondary-subtle">
-  <header class="text-bg-primary p-3 text-center">
-    <h1>Tech Blog</h1>
+  <header class="bg-info p-3 text-center">
+    <h1>The Tech Blog</h1>
   </header>
-  <nav class="navbar-expand-lg bg-body-tertiary text-center fs-2 d-flex justify-content-around p-4">
-    <a href="/" class="btn btn-success btn-lg">Home</a>
-    {{#if logged_in}}
-    <a id="logout" class="btn btn-success btn-lg">Logout</a>
-    {{else}}
-    <a href="/login" class="btn btn-success btn-lg">Login</a>
-    {{/if}}
-    <a href="/dash" class="btn btn-success btn-lg">Dashboard</a>
+  <nav class="navbar-expand-lg bg-body-tertiary text-center fs-4 d-flex justify-content-left">
+    <ul class="nav">
+        <li class="nav-item">
+            <a href="/" class="nav-link text-info">Recent Posts</a>
+        </li>
+        {{#if logged_in}}
+        <li class="nav-item">
+            <a id="logout" class="nav-link text-info">Logout</a>
+        </li>
+        {{else}}
+        <li class="nav-item">
+            <a href="/login" class="nav-link text-info">Login</a>
+        </li>
+        {{/if}}
+        <li class="nav-item">
+            <a href="/dash" class="nav-link text-info">Dashboard</a>
+        </li>
+    </ul>
   </nav>
-  <main class="flex-row mb-3  text-center">
-    <div class="p-2 location ">
+  <main class="flex-row mb-3">
+    <div class="p-2 location">
       {{{body}}}
     </div>
+
   </main>
 
   {{#if logged_in}}
