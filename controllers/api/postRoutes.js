@@ -1,9 +1,12 @@
+// Import dependencies
 const router = require('express').Router();
 const { Post } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+// Create new post (api/posts/)
 router.post('/', withAuth, async (req, res) => {
   try {
+    // New row in Post table
     const newPost = await Post.create({
       ...req.body,
       user_id: req.session.user_id,
@@ -15,8 +18,10 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+// Delete specific post (api/posts/[id])
 router.delete('/:id', withAuth, async (req, res) => {
   try {
+    //Delete row in Post table
     const postData = await Post.destroy({
       where: {
         id: req.params.id,
