@@ -2,21 +2,17 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// Create Post model 
-class Post extends Model {}
+// Create Comment model 
+class Comment extends Model {}
 
 // Initialize model >> mysql table
-Post.init(
+Comment.init(
   {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-    },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     body: {
       type: DataTypes.TEXT('medium'), //Max ~65,535 chars
@@ -27,7 +23,7 @@ Post.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    // Foreign key to User table (writer of post)
+    // Foreign key to User table (writer of comment)
     user_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -35,15 +31,23 @@ Post.init(
         key: 'id',
       },
     },
+    // Foreign key to Post table (post commented on)
+    post_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'post',
+          key: 'id',
+        },
+      },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'post',
+    modelName: 'comment',
   }
 );
 
 
-module.exports = Post;
+module.exports = Comment;

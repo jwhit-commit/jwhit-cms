@@ -1,45 +1,40 @@
-// SUBMIT NEW POST VIA API
+// SUBMIT NEW COMMENT VIA API
 // Request function
-const newPostHandler = async (event) => {
+const newCommentHandler = async (event) => {
     // event.preventDefault();
+    console.log("function executed")
   
-    const title = titleInput.value.trim();
-    const body = bodyInput.value.trim();
+    const body = bodyInput.value.trim(); 
+    console.log(body)
+
+    const path = window.document.URL.split("?");
+    const folderArray = path[0].split("/");
+    const post_id = folderArray[folderArray.length-1]
+    console.log(post_id)
   
-    if (title && body) {
-      const response = await fetch(`/api/posts`, {
+    if (body && post_id) {
+      const response = await fetch(`/api/comments`, {
         method: 'POST',
-        body: JSON.stringify({ title, body }),
+        body: JSON.stringify({ body, post_id }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
   
       if (response.ok) {
-        // window.location.reload;
+        window.location.reload;
       } else {
-        alert('Failed to submit article');
+        alert('Failed to submit comment');
       }
     }
   };
 
-
-// NEW POST SUBMISSION FORM -- ADD HTML TO PAGE
+// NEW COMMENT SUBMISSION FORM -- ADD HTML TO PAGE
 // Create elements
 const formContainer = document.createElement("div");
     formContainer.classList.add("card-container","w-100","border","p-3"); 
 
 const form = document.createElement("form");    
-
-const titleGroup = document.createElement("div");
-    titleGroup.classList.add("form-group"); 
-
-const titleInput = document.createElement("input");    
-    titleInput.classList.add("form-control"); 
-    titleInput.id = "title-input";
-    titleInput.placeholder = "Article Title";
-
-const formBreak = document.createElement("br")    
 
 const bodyGroup = document.createElement("div");
     bodyGroup.classList.add("form-group"); 
@@ -47,7 +42,7 @@ const bodyGroup = document.createElement("div");
 const bodyInput = document.createElement("textarea");    
     bodyInput.classList.add("form-control"); 
     bodyInput.id = "body-input";
-    bodyInput.placeholder = "Great ideas start here..."
+    bodyInput.placeholder = "Let us know what you think..."
     bodyInput.setAttribute("oninput",`this.style.height = "";this.style.height = this.scrollHeight + "px"`);
     
 const formBreak2 = document.createElement("br")    
@@ -58,17 +53,14 @@ const buttonDiv = document.createElement("div")
 const submitButton = document.createElement("button");    
     submitButton.type = "click";
     submitButton.classList.add("btn", "btn-info", "btn-block", "w-75"); 
-    submitButton.textContent = "Create new article"
+    submitButton.textContent = "Add new comment"
     submitButton.id = "submit-button"
 
 // Function to add elements to page    
-const newPost = () => {
-    postContainer = document.querySelector("#new-post-container")
-    postContainer.appendChild(formContainer);
+const newComment = () => {
+    commentContainer = document.querySelector("#new-comment-container")
+    commentContainer.appendChild(formContainer);
     formContainer.appendChild(form);
-    form.appendChild(titleGroup);
-    titleGroup.appendChild(titleInput);
-    form.appendChild(formBreak);
     form.appendChild(bodyGroup);
     bodyGroup.appendChild(bodyInput);
     form.appendChild(formBreak2);
@@ -76,14 +68,14 @@ const newPost = () => {
     buttonDiv.appendChild(submitButton);
 
     // Hide Create button
-    newPostButton = document.querySelector("#new-post")
-    newPostButton.style.display = "none"
+    newCommentButton = document.querySelector("#new-comment")
+    newCommentButton.style.display = "none"
 
     // Add API request function to button
-    submitButton.addEventListener('click', newPostHandler);
+    submitButton.addEventListener('click', newCommentHandler);
 }    
 
 // Fire handler function upon button click
-document.querySelector('#new-post').addEventListener('click', newPost);
+document.querySelector('#new-comment').addEventListener('click', newComment);
 
 

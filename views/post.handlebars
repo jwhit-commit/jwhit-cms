@@ -1,0 +1,39 @@
+{{!-- via homeRoutes --}}
+<body>
+    <br>
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title row flex">
+                <h3 class=>{{title}}</h3>
+                <p class="">{{format_date date_created}} by {{user.username}} </p>
+            </div>
+            <p class="card-text ">{{body}}</p>
+        </div>
+    </div>
+    <br>
+    <div id="new-comment-container" class="w-100 d-flex justify-content-center">
+        {{#if logged_in}}
+        <button id="new-comment" class="btn btn-info fs-5 fw-bolder btn-block w-75">Add a comment</button>
+        {{else}}
+            <a href="/login" class="w-100 d-flex justify-content-center">
+                <button id="new-comment" class="btn btn-info fs-5 fw-bolder btn-block w-75">Log in to comment</button>
+            </a>
+        {{/if}}
+    </div> 
+    <br>
+    {{#each comments as |comment|}}
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title row flex">
+                <h5 class="">{{format_date comment.date_created}} by {{comment.user.username}} </h5>
+            </div>
+            <p class="card-text ">{{comment.body}}</p>
+        </div>
+    </div>
+    <br>
+    {{/each}}
+    <br>
+</body>
+
+
+<script src="../js/comment.js"></script>
