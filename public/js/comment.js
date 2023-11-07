@@ -5,7 +5,7 @@ const newCommentHandler = async (event) => {
 
     const path = window.document.URL.split("?");
     const folderArray = path[0].split("/");
-    const post_id = folderArray[folderArray.length-1];
+    const post_id = folderArray[folderArray.length-2];
   
     if (body && post_id) {
       const response = await fetch(`/api/comments`, {

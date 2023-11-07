@@ -1,13 +1,15 @@
 {{!-- via homeRoutes --}}
 <body>
     <br>
-        {{#if logged_in}} {{#if sameUser}}
+        {{!-- {{#if logged_in}}  --}}
+        {{#if sameUser}}
         <div id="edit-post-container" class="w-100 d-flex justify-content-center">
             <a href={{edit_href_concat id}} class="w-100"><button id="edit-post" class="btn btn-secondary fs-5 fw-bolder btn-block w-75 mx-2">Edit Post</button></a>
             <button id="delete-post" class="btn btn-danger fs-5 fw-bolder btn-block w-75 mx-2">Delete Post</button>
         </div>
         <br>
-        {{/if}}{{/if}}
+        {{!-- {{/if}} --}}
+        {{/if}}
     <div id="post-container" class="card">
         <div class="card-body">
             <div class="card-title row flex">
