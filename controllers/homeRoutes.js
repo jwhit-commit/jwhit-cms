@@ -1,5 +1,6 @@
 // Import dependencies
 const router = require('express').Router();
+const sequelize = require('../config/connection');
 const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
@@ -83,12 +84,7 @@ router.get('/login', (req, res) => {
 router.get('/post/:id', async (req, res) => {
     try {
       const postData = await Post.findByPk(req.params.id, {
-        include: [
-          {
-            model: User,
-            attributes: ['username'],
-          },
-        ],
+        include: {all: true, nested: true}
       });
   
       const post = postData.get({ plain: true });
@@ -103,3 +99,5 @@ router.get('/post/:id', async (req, res) => {
   });
 
 module.exports = router;
+
+sequelize.col()

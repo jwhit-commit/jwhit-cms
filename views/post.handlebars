@@ -21,6 +21,17 @@
         {{/if}}
     </div> 
     <br>
+    {{#each comments as |comment|}}
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title row flex">
+                <h5 class="">{{format_date comment.date_created}} by {{comment.user.username}} </h5>
+            </div>
+            <p class="card-text ">{{comment.body}}</p>
+        </div>
+    </div>
+    <br>
+    {{/each}}
     <br>
 </body>
 
