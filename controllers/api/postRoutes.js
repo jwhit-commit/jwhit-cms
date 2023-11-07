@@ -4,7 +4,8 @@ const { Post } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // Create new post (api/posts/)
-router.post('/', withAuth, async (req, res) => {
+// router.post('/', withAuth, async (req, res) => {
+  router.post('/', async (req, res) => {
   try {
     // New row in Post table
     const newPost = await Post.create({

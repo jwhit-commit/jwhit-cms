@@ -14,6 +14,9 @@ router.get('/', async (req, res) => {
                 attributes: ['username'], //Include username column
                 },
             ],
+            order: [
+                ['date_created', 'DESC'], //Most recent posts first
+            ],
         });
 
         // Convert array data to plain objects
@@ -44,6 +47,9 @@ router.get('/dash', withAuth, async (req, res) => {
                     attributes: ['username'], //Include username column
                 },
               ],
+            order: [
+                ['date_created', 'DESC'], //Most recent posts first
+            ],
         });
 
             // Convert array data to plain objects
