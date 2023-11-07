@@ -81,6 +81,7 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+// Post page browser request route
 router.get('/post/:id', async (req, res) => {
     try {
       const postData = await Post.findByPk(req.params.id, {
@@ -88,16 +89,16 @@ router.get('/post/:id', async (req, res) => {
       });
   
       const post = postData.get({ plain: true });
-
+      
       let sameUser = false;
-      if (post.user_id = req.session.user_id) {
-        sameUser = true
-      }
+      if (post.user_id === req.session.user_id) {
+        sameUser = true;
+      };
   
       res.render('post', {
         ...post,
         logged_in: req.session.logged_in,
-        sameUser
+        sameUser,
       });
     } catch (err) {
       res.status(500).json(err);
