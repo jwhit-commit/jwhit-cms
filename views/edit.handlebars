@@ -1,0 +1,25 @@
+<br>
+<div class="w-100 justify-content-center d-flex flex-column">
+    <h2 class="mx-auto">Edit article</h2>
+    <p class="mx-auto" style="font-style: italic; font-size: .7rem">originally published {{format_date date_created}}</p>
+</div>
+
+
+<div class="card-contaioner w-100 border p-3">
+    <form>
+        <div class="form-group">
+            <input id="title-input" type="text" class="form-control" value={{title}}>
+        </div>
+        <br>
+        <div class="form-group">
+            <textarea name="" id="body-input" class="form-control" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'>{{body}}</textarea>
+        </div>
+        <br>
+        <div class="w-100 d-flex justify-content-center">
+            <button id="submit-button" class="btn btn-info btn-block w-75">Update article</button>
+        </div>
+    </form>
+</div>
+
+
+<script src="/js/edit.js"></script>

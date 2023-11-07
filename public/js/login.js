@@ -15,7 +15,9 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/dash'); //Redirect to dashboard page
+        setTimeout(() => {
+          window.location.replace("/dash"); //Redirect to dashboard page
+      }, 1000);
       } else {
         alert(response.statusText);
       }

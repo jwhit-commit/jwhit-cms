@@ -16,7 +16,9 @@ const newPostHandler = async (event) => {
       });
   
       if (response.ok) {
-        // window.location.reload;
+        setTimeout(() => {
+            window.location.reload;
+        }, 1500);
       } else {
         alert('Failed to submit article');
       }
