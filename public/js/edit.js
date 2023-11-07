@@ -27,7 +27,7 @@ const editPostHandler = async (event) => {
           window.location.replace("/dash");
       }, 1000);
       } else {
-        alert('Failed to submit comment');
+        alert('Failed to submit update');
       }
 }
 
