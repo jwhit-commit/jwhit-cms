@@ -23,7 +23,9 @@ const editPostHandler = async (event) => {
       });
   
       if (response.ok) {
-            window.location.replace("/dash");
+        setTimeout(() => {
+          window.location.replace("/dash");
+      }, 1000);
       } else {
         alert('Failed to submit comment');
       }
