@@ -1,7 +1,14 @@
 {{!-- via homeRoutes --}}
 <body>
     <br>
-    <div class="card">
+        {{#if logged_in}} {{#if sameUser}}
+        <div id="edit-post-container" class="w-100 d-flex justify-content-center">
+            <a href={{edit_href_concat id}} class="w-100"><button id="edit-post" class="btn btn-secondary fs-5 fw-bolder btn-block w-75 mx-2">Edit Post</button></a>
+            <button id="delete-post" class="btn btn-danger fs-5 fw-bolder btn-block w-75 mx-2">Delete Post</button>
+        </div>
+        <br>
+        {{/if}}{{/if}}
+    <div id="post-container" class="card">
         <div class="card-body">
             <div class="card-title row flex">
                 <h3 class=>{{title}}</h3>
@@ -15,14 +22,14 @@
         {{#if logged_in}}
         <button id="new-comment" class="btn btn-info fs-5 fw-bolder btn-block w-75">Add a comment</button>
         {{else}}
-            <a href="/login" class="w-100 d-flex justify-content-center">
+            <a href="/login" class="w-100 d-flex justify-content-center" style="text-decoration: none">
                 <button id="new-comment" class="btn btn-info fs-5 fw-bolder btn-block w-75">Log in to comment</button>
             </a>
         {{/if}}
     </div> 
     <br>
     {{#each comments as |comment|}}
-    <div class="card">
+    <div class="card mx-4">
         <div class="card-body">
             <div class="card-title row flex">
                 <h5 class="">{{format_date comment.date_created}} by {{comment.user.username}} </h5>
@@ -36,4 +43,7 @@
 </body>
 
 
-<script src="../js/comment.js"></script>
+<script src="/js/comment.js"></script>
+{{#if logged_in}}
+  <script src="/js/post.js"></script>
+{{/if}}

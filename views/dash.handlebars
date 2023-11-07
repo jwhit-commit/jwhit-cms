@@ -8,15 +8,17 @@
     <br>
     {{!-- Loop through all rows of passed posts table, creating card for each --}}
     {{#each posts as |post|}}
-    <div class="card">
-        <div class="card-body">
-            <div class="card-title row flex">
-                <h3 class=>{{post.title}}</h3>
-                <p class="">{{format_date post.date_created}} by {{post.user.username}} </p>
+    <a class="unlined" style="text-decoration: none" href={{post_href_concat post.id}}/>
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title row flex">
+                    <h3 class=>{{post.title}}</h3>
+                    <p class="">{{format_date post.date_created}} by {{post.user.username}} </p>
+                </div>
+                <p class="card-text ">{{post.body}}</p>
             </div>
-            <p class="card-text ">{{post.body}}</p>
         </div>
-    </div>
+    </a>
     <br>
     {{/each}}
 </body>

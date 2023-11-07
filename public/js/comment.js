@@ -1,16 +1,11 @@
 // SUBMIT NEW COMMENT VIA API
 // Request function
-const newCommentHandler = async (event) => {
-    // event.preventDefault();
-    console.log("function executed")
-  
+const newCommentHandler = async (event) => {  
     const body = bodyInput.value.trim(); 
-    console.log(body)
 
     const path = window.document.URL.split("?");
     const folderArray = path[0].split("/");
-    const post_id = folderArray[folderArray.length-1]
-    console.log(post_id)
+    const post_id = folderArray[folderArray.length-1];
   
     if (body && post_id) {
       const response = await fetch(`/api/comments`, {
@@ -22,7 +17,9 @@ const newCommentHandler = async (event) => {
       });
   
       if (response.ok) {
-        window.location.reload;
+        setTimeout(() => {
+          window.location.reload;
+      }, 1000);
       } else {
         alert('Failed to submit comment');
       }
