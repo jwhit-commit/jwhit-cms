@@ -1,6 +1,8 @@
+// Import dependencies
 const router = require('express').Router();
 const { User } = require('../../models');
 
+// Create new user (/api/users/)
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
@@ -16,9 +18,11 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Login route (/api/users/login)
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { username: req.body.username } });
+    // Query User table by username (provided in request)
+    const userData = await User.findOne({ where: { username: req.body.username } }); 
 
     if (!userData) {
       res
@@ -27,6 +31,7 @@ router.post('/login', async (req, res) => {
       return;
     }
 
+    // Check password with our bcrypt unhashing method
     const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
@@ -36,6 +41,7 @@ router.post('/login', async (req, res) => {
       return;
     }
 
+    //Create session w/ user cookie parameters
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
@@ -48,6 +54,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// Destroy session (api/users/logout)
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {

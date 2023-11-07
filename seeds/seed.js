@@ -1,9 +1,12 @@
+// Import dependencies
 const sequelize = require('../config/connection');
 const { User, Post } = require('../models');
 
+// Arrays of seed data
 const userData = require('./userData.json');
 const postData = require('./postData.json');
 
+// Create rows
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 

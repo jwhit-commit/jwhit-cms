@@ -1,3 +1,4 @@
+// Login function
 const loginFormHandler = async (event) => {
     event.preventDefault();
   
@@ -6,7 +7,7 @@ const loginFormHandler = async (event) => {
     const password = document.querySelector('#password-login').value.trim();
   
     if (username && password) {
-      // Send a POST request to the API endpoint
+      // Send a POST request to login endpoint
       const response = await fetch('/api/users/login', {
         method: 'POST',
         body: JSON.stringify({ username, password }),
@@ -14,15 +15,15 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        // If successful, redirect the browser to the profile page
-        document.location.replace('/'); //change to dash
+        document.location.replace('/dash'); //Redirect to dashboard page
       } else {
         alert(response.statusText);
       }
     }
   };
   
-  const signupFormHandler = async (event) => {
+// Signup function
+const signupFormHandler = async (event) => {
     event.preventDefault();
   
     const username = document.querySelector('#username-signup').value.trim();
@@ -36,18 +37,18 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/'); //change to dash
+        document.location.replace('/dash'); //Redirect to dashboard page
       } else {
         alert(response.statusText);
       }
     }
-  };
-  
-  document
+};
+
+// Fire handler functions upon form submit
+document
     .querySelector('.login-form')
     .addEventListener('submit', loginFormHandler);
   
-  document
+document
     .querySelector('.signup-form')
     .addEventListener('submit', signupFormHandler);
-  
