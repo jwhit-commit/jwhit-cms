@@ -11,8 +11,8 @@
 
 <body class="bg-secondary-subtle">
     {{!-- Common header to all pages --}}
-  <header class="bg-info p-3 text-center">
-    <h1>The Tech Blog</h1>
+  <header class="bg-info p-3 text-left">
+    <h1 class="fst-italic">The Tech Blog</h1>
   </header>
   <nav class="navbar-expand-lg bg-body-tertiary text-center fs-4 d-flex justify-content-left">
     <ul class="nav">
@@ -33,7 +33,7 @@
         </li>
     </ul>
   </nav>
-  <main class="flex-row mb-3">
+  <main class="flex-row mb-3 mx-5">
     <div class="p-2 location">
         {{!-- dynamic page content --}}
       {{{body}}}
