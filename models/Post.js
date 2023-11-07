@@ -27,7 +27,7 @@ Post.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    // Foreign key to User table (post composer)
+    // Foreign key to User table (writer of post)
     user_id: {
       type: DataTypes.INTEGER,
       references: {

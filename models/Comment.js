@@ -23,7 +23,7 @@ Comment.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    // Foreign key to User table (post composer)
+    // Foreign key to User table (writer of comment)
     user_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -31,6 +31,7 @@ Comment.init(
         key: 'id',
       },
     },
+    // Foreign key to Post table (post commented on)
     post_id: {
         type: DataTypes.INTEGER,
         references: {

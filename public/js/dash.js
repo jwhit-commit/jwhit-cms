@@ -58,7 +58,7 @@ const buttonDiv = document.createElement("div")
 const submitButton = document.createElement("button");    
     submitButton.type = "click";
     submitButton.classList.add("btn", "btn-info", "btn-block", "w-75"); 
-    submitButton.textContent = "Create New Article"
+    submitButton.textContent = "Create new article"
     submitButton.id = "submit-button"
 
 // Function to add elements to page    

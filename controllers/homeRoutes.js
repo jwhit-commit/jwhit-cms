@@ -1,6 +1,6 @@
 // Import dependencies
 const router = require('express').Router();
-const { User, Post } = require('../models');
+const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Home page browser request route
@@ -68,6 +68,7 @@ router.get('/dash', withAuth, async (req, res) => {
     }
   });
 
+// Login page browser request route
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the browser to dashboard page
     if (req.session.logged_in) {
@@ -78,5 +79,27 @@ router.get('/login', (req, res) => {
     // Render login.handlebars
     res.render('login');
 });
+
+router.get('/post/:id', async (req, res) => {
+    try {
+      const postData = await Post.findByPk(req.params.id, {
+        include: [
+          {
+            model: User,
+            attributes: ['username'],
+          },
+        ],
+      });
+  
+      const post = postData.get({ plain: true });
+  
+      res.render('post', {
+        ...post,
+        logged_in: req.session.logged_in
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
 module.exports = router;
